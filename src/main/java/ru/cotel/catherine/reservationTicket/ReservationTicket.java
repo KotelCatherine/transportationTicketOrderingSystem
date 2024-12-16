@@ -1,44 +1,54 @@
-package ru.cotel.catherine;
+package ru.cotel.catherine.reservationTicket;
+
+import ru.cotel.catherine.transport.Transport;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ReservationTicket {
-    private boolean reserved;
-    private int numRout;
-    private int numPlace;
-    private List<ReservationTicket> tickets = new ArrayList<>();
+public class ReservationTicket implements ReservationTicketOnTransport{
+    private Transport nameRout;
+    private static Map<String, ReservationTicketOnTransport> tickets = new HashMap<>();
+    private static int countReservedTickets = 0;
 
-    private String fullNamePerson;
-
-    ReservationTicket(int numRout, int numPlace, String fullNamePerson) {
-        this.numRout = numRout;
-        this.numPlace = numPlace;
-        this.fullNamePerson = fullNamePerson;
+    public ReservationTicket(Transport nameRout) {
+        this.nameRout = nameRout;
     }
 
-    public String ticketReservation(ReservationTicket reservationTicket) {
+    public ReservationTicket() {
+    }
 
-        if (PlaceInTransport.placeFree(numPlace)) {
-            reserved = true;
-            tickets.add(reservationTicket);
-            return "Забронировано";
-        }else {
-            return "Место уже занято";
+    public void ticketReservation(ReservationTicketOnTransport reservationTicket, String fullNamePerson) {
+        tickets.put(fullNamePerson, reservationTicket);
+        countReservedTickets++;
+    }
+
+    public void cancelTicketReservation(String fullNamePerson) {
+        if (!tickets.containsKey(fullNamePerson)) {
+            System.out.println("Бронь не найдена");
+        } else {
+            //placeInTransport.setPlaces(numPlace, nameRout, "Свободно");
+            tickets.remove(fullNamePerson);
+            countReservedTickets--;
         }
     }
 
-    public void cancelTicketReservation() {
-        reserved = false;
+    public static List<ReservationTicketOnTransport> getListReservationTicket(){
+        List<ReservationTicketOnTransport> listReservationTickets = new ArrayList<>();
+        for (Map.Entry<String, ReservationTicketOnTransport> ticket: tickets.entrySet()){
+            listReservationTickets.add(ticket.getValue());
+        }
+        return listReservationTickets;
+    }
+
+    public static int getCountReservedTickets() {
+        return countReservedTickets;
     }
 
     @Override
     public String toString() {
-        return "ReservationTicket{" +
-                "reserved=" + reserved +
-                ", numRout=" + numRout +
-                ", numPlace=" + numPlace +
-                ", person='" + fullNamePerson + '\'' +
-                '}';
+        return "Бронь на маршрут: " +
+                nameRout;
     }
 }

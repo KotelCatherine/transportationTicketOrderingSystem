@@ -1,25 +1,16 @@
-package ru.cotel.catherine;
+package ru.cotel.catherine.transport;
 
 public abstract class Transport {
-    private String routeName;
-    private String modeTransportation;
-
+    private final String routeName;
+    private final String modeTransportation;
 
     public Transport(String routeName, String modeTransportation) {
         this.routeName = routeName;
         this.modeTransportation = modeTransportation;
     }
 
-    public String getRouteName() {
-        return routeName;
-    }
-
-    public String getModeTransportation() {
-        return modeTransportation;
-    }
-
     @Override
     public String toString() {
-        return "Маршрут: " + routeName;
+        return routeName + ", вид транспорта: " + modeTransportation;
     }
 }

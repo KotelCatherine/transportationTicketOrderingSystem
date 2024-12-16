@@ -1,4 +1,7 @@
 package ru.cotel.catherine.reservationTicket;
 
-public interface ResrvationTicketOnTransport {
+
+public interface ReservationTicketOnTransport {
+    void ticketReservation(ReservationTicketOnTransport reservationTicket, String fullNamePerson);
+    void cancelTicketReservation(String fullNamePerson);
 }

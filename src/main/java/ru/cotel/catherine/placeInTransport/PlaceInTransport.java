@@ -1,20 +1,40 @@
-package ru.cotel.catherine;
+package ru.cotel.catherine.placeInTransport;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import ru.cotel.catherine.transport.Transport;
+
+import java.util.*;
 
 public class PlaceInTransport {
-    private static List<Integer> places = new ArrayList<>(Arrays.asList(1,1,1,1,1,1,1,1,1,1));
+    private Map<Transport, List<String>> placesInTransport = new HashMap<>();
+    private List<String> places = new ArrayList<>(Arrays.asList(
+            "Свободно", "Свободно", "Свободно",
+            "Свободно", "Свободно", "Свободно",
+            "Свободно", "Свободно", "Свободно"));
 
     public PlaceInTransport() {
     }
 
-    public static List<Integer> getPlaces() {
-        return places;
+    public List<String> getPlaces(Transport transport) {
+        return placesInTransport.get(transport);
     }
 
-    public static boolean placeFree(int numPlace){
-        return places.get(numPlace) == 1;
+    public void putInMap(Transport transport) {
+        if (!placesInTransport.containsKey(transport)) {
+            placesInTransport.put(transport, places);
+        }
+    }
+
+    public void setPlaces(int numPlace, Transport transport, String placeInformation) {
+        List<String> newPlaceInformation = new ArrayList<>(placesInTransport.get(transport));
+        newPlaceInformation.set(numPlace, placeInformation);
+        placesInTransport.put(transport, newPlaceInformation);
+    }
+
+    public boolean isPlaceFree(int numPlace, Transport transport) {
+        List<String> placesInformation = new ArrayList<>(placesInTransport.get(transport));
+        if (placesInformation.get(numPlace).equalsIgnoreCase("свободно")){
+            return true;
+        }
+        return false;
     }
 }
