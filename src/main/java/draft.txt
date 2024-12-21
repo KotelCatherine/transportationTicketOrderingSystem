@@ -1,0 +1,46 @@
+                       /* placeInTransport.putInMap(transport);
+                        System.out.println("Выберите свободное место");
+                        for (String place : placeInTransport.getPlaces(transport)) {
+                            System.out.println(i + ". " + place);
+                            i++;
+                        }
+                        i = 1;
+                        */
+
+
+                       /* while (true) {
+                            int numPlace = Integer.parseInt(scanner.nextLine());
+                            if (placeInTransport.isPlaceFree(numPlace - 1, transport)) {
+                                placeInTransport.setPlaces(numPlace-1,transport,"Занято");
+
+                                break;
+                            } else {
+                                System.out.println("Это место уже занято, выберите другое!");
+                            }
+                        }*/
+
+Controller:
+//DIP
+//Лучше передавать зависимости через интерфейсы или через фабрику, например создать RoutRepository & ReservationService
+
+/**
+ * public class Controller {
+ * private final RouteRepository routeRepository;
+ * private final ReservationService reservationService;
+ *
+ * public Controller(RouteRepository routeRepository, ReservationService reservationService) {
+ * this.routeRepository = routeRepository;
+ * this.reservationService = reservationService;     }
+ * }
+ */
+
+
+ RoutList:
+ //getters вынести в интерфейс для работы с маршрутами, а реализацию сделать в InMemoryRoutRepository
+ //нарушение OCP
+ //DIP лучше использовать интерфейсы для работы с маршрутами вместо статических методов
+
+ ReservationTicket:
+ //ReservationManager для брони, а тут данные о билете оставить(разделить на хранение инфы и управление резервированием)
+ //OCP
+ //DIP лучше использовать интерфейсы для работы с бронями вместо статических методов

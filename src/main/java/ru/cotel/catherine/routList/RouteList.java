@@ -1,25 +1,24 @@
 package ru.cotel.catherine.routList;
 
+import ru.cotel.catherine.transport.TransportType;
 import ru.cotel.catherine.transport.Airplane;
 import ru.cotel.catherine.transport.Bus;
 import ru.cotel.catherine.transport.Transport;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RouteList {
-    private static List<Transport> routes = Arrays.asList(
-            new Bus("Абакан-Новосибирск", "автобус"),
-            new Airplane("Абакан-Новосибирск", "самолёт"),
-            new Bus("Красноярск-Иркутск", "автобус"),
-            new Airplane("Красноярск-Иркутск", "самолёт")
+public class RouteList implements RoutListService {
+    private List<Transport> routes = new ArrayList<>(Arrays.asList(
+            new Bus("Абакан-Новосибирск", TransportType.BUS),
+            new Airplane("Абакан-Новосибирск", TransportType.AIRPLANE),
+            new Bus("Красноярск-Иркутск", TransportType.BUS),
+            new Airplane("Красноярск-Иркутск", TransportType.AIRPLANE))
     );
 
-    public static List<Transport> getRoutes() {
+    @Override
+    public List<Transport> getRoutes() {
         return routes;
-    }
-
-    public static Transport getRouteByIndex(int numRoute) {
-        return routes.get(numRoute);
     }
 }

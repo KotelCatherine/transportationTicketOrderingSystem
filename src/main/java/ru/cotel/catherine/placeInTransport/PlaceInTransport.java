@@ -3,7 +3,7 @@ package ru.cotel.catherine.placeInTransport;
 import ru.cotel.catherine.transport.Transport;
 
 import java.util.*;
-
+//TODO подключить после разбора основной темы
 public class PlaceInTransport {
     private Map<Transport, List<String>> placesInTransport = new HashMap<>();
     private List<String> places = new ArrayList<>(Arrays.asList(
