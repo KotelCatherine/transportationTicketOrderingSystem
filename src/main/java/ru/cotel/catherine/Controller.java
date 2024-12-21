@@ -2,7 +2,6 @@ package ru.cotel.catherine;
 
 import ru.cotel.catherine.reservationTicket.ReservationManager;
 import ru.cotel.catherine.reservationTicket.ReservationService;
-import ru.cotel.catherine.reservationTicket.ReservationTicketRepository;
 import ru.cotel.catherine.routList.RouteRepository;
 import ru.cotel.catherine.transport.Transport;
 
@@ -12,7 +11,6 @@ public class Controller {
     int i;
     private final RouteRepository routeRepository;
     private ReservationService reservationService;
-    private ReservationTicketRepository reservationTickets;
 
     public Controller(RouteRepository routeRepository, ReservationService reservationService) {
         this.routeRepository = routeRepository;

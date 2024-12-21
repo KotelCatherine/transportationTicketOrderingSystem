@@ -13,7 +13,6 @@ public class ReservationTicket implements ReservationTicketRepository{
 
     @Override
     public boolean removeReservationTicketFromRepository(String fullName) {
-
         if (!tickets.containsKey(fullName)) {
             return false;
         } else {
